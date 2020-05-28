@@ -7,17 +7,14 @@ public class SetRecordTypeIA {
         String RTDeveloperName = requestList[0].newRecordTypeDeveloperName;
         String objectName = requestList[0].objectName;
         
-        // get the record
-        // 
-        String query = 'SELECT Id FROM ' + objectName + ' WHERE ID = :recordIDToSetRTFor';
-        sObject sobj = Database.query(query);
-               
-        // get recordtypeid
+        SObject sobj = Schema.getGlobalDescribe().get(objectName).newSObject();
         
+        // get recordtypeid
         Schema.SObjectType s = sobj.getSObjectType();
         Schema.DescribeSObjectResult d = s.getDescribe();
         Id recordTypeId = d.getRecordTypeInfosByDeveloperName().get(RTDeveloperName).getRecordTypeId();
         
+        sobj.put('Id', recordIDToSetRTFor);
         sobj.put('RecordTypeId', recordTypeId);
         update sobj;
     }
