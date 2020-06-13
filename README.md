@@ -5,4 +5,4 @@ This repository contains three simple classes that are invocable actions that ca
 
 Now this small package takes this pain away. Made possible by API48 release which allows Invocable Actions to take generic parameter types.
 
-Do note that the Process Builder version will use a SOQL query to retrieve the record (as Process Builder doesn't permit the record itself be passed as a parameter to the Action), while the Flow version doesn't have this restriction.
+Do note that neither the Process Builder version nor the Flow version will use a SOQL query to retrieve the record.
